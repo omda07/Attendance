@@ -1,6 +1,7 @@
+import 'package:attendance/view/resources/styles_manager.dart';
+import 'package:attendance/view/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:qrcode_app/view/resources/styles_manager.dart';
-import 'package:qrcode_app/view/resources/values_manager.dart';
+
 
 import 'color_manager.dart';
 import 'font_manager.dart';

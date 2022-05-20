@@ -1,6 +1,8 @@
 
 
 
+import 'package:attendance/model/attend_model.dart';
+
 import '../../model/user_model.dart';
 
 abstract class AttendanceStates{}
@@ -32,6 +34,9 @@ class AttendanceTimeSheetErrorState extends AttendanceStates{
 
 class AttendLoadingState extends AttendanceStates{}
 class AttendSuccessState extends AttendanceStates{
+final AttendModel attendModel;
+
+  AttendSuccessState(this.attendModel);
 
 }
 class AttendErrorState extends AttendanceStates{

@@ -29,7 +29,7 @@ class UserDetails extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: ColorManager.primary,
         ),
         backgroundColor: ColorManager.white,
@@ -37,12 +37,12 @@ class UserDetails extends StatelessWidget {
       ),
       body: SafeArea(
         child: ConditionalBuilder(
-          condition: cubit.userModel != null ,
-          builder: (context){
+          condition: cubit.userModel != null,
+          builder: (context) {
             return Column(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   height: media.height / 3,
                   width: media.width,
                   decoration: BoxDecoration(color: ColorManager.white),
@@ -87,122 +87,51 @@ class UserDetails extends StatelessWidget {
                   child: BlocConsumer<AttendanceCubit, AttendanceStates>(
                     listener: (context, state) {},
                     builder: (context, state) {
+                      var timeCubit  =AttendanceCubit.get(context);
                       return Expanded(
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           height: media.height,
                           width: media.width,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(30),
                                   topRight: Radius.circular(30)),
                               color: ColorManager.primary),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Day: 1',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: ColorManager.white),
-                                  ),
-                                  CircleAvatar(
+                          child: ConditionalBuilder(
+                             condition:timeCubit.timeSheetModel != null ,
+                            builder: (context)=>ListView.builder(
+                              shrinkWrap: true,
+
+                              itemCount: timeCubit.timeSheetModel!.data!.length,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 15.0),
+                                child: Row(
+
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Day: ${index + 1}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineSmall!
+                                          .copyWith(color: ColorManager.white),
+                                    ),
+                                    CircleAvatar(
                                       backgroundColor: ColorManager.white,
                                       radius: 20,
-                                      child: Icon(Icons.check,
-                                          color: ColorManager.primary))
-                                ],
+                                      child: timeCubit.timeSheetModel!.data![index] !=
+                                          false
+                                          ? Icon(Icons.check,
+                                          color: ColorManager.primary)
+                                          : Icon(Icons.close, color: Colors.red),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Day: 2',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: ColorManager.white),
-                                  ),
-                                  CircleAvatar(
-                                      backgroundColor: ColorManager.white,
-                                      radius: 20,
-                                      child: Icon(Icons.close, color: Colors.red))
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Days: 0',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: ColorManager.white),
-                                  ),
-                                  CircleAvatar(
-                                      backgroundColor: ColorManager.white,
-                                      radius: 20,
-                                      child: Icon(Icons.check,
-                                          color: ColorManager.primary))
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Days: 0',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: ColorManager.white),
-                                  ),
-                                  CircleAvatar(
-                                      backgroundColor: ColorManager.white,
-                                      radius: 20,
-                                      child: Icon(Icons.check,
-                                          color: ColorManager.primary))
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Days: 0',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: ColorManager.white),
-                                  ),
-                                  CircleAvatar(
-                                      backgroundColor: ColorManager.white,
-                                      radius: 20,
-                                      child: Icon(Icons.check,
-                                          color: ColorManager.primary))
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Days: 0',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall!
-                                        .copyWith(color: ColorManager.white),
-                                  ),
-                                  CircleAvatar(
-                                      backgroundColor: ColorManager.white,
-                                      radius: 20,
-                                      child: Icon(Icons.check,
-                                          color: ColorManager.primary))
-                                ],
-                              ),
-                            ],
+                            ),
+                            fallback:(context)=>const Center(child: CircularProgressIndicator(),),
+
                           ),
                         ),
                       );
@@ -212,8 +141,9 @@ class UserDetails extends StatelessWidget {
               ],
             );
           },
-          fallback: (context)=>const Center(child: CircularProgressIndicator(),),
-
+          fallback: (context) => const Center(
+            child: CircularProgressIndicator(),
+          ),
         ),
       ),
     );

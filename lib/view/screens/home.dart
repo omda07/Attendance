@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             actions: [
               OutlinedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QRViewExample()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QRScanner()));
                   },
                   child: const Icon(
                     Icons.qr_code,
