@@ -1,10 +1,10 @@
-import 'package:attendance/control/cubit/cubit.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
+import '../../control/cubit/cubit.dart';
 import '../../control/cubit/states.dart';
 import '../widgets/item_builder.dart';
 import '../widgets/qr_scanner.dart';

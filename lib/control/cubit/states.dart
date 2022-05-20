@@ -1,8 +1,5 @@
 
-
-
-import 'package:attendance/model/attend_model.dart';
-
+import '../../model/attend_model.dart';
 import '../../model/user_model.dart';
 
 abstract class AttendanceStates{}

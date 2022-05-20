@@ -7,7 +7,6 @@ import '../../control/cubit/states.dart';
 import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
 import '../resources/styles_manager.dart';
-import '../resources/values_manager.dart';
 
 class UserDetails extends StatelessWidget {
   int index;

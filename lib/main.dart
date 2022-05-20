@@ -1,10 +1,11 @@
-import 'package:attendance/control/cubit/cubit.dart';
-import 'package:attendance/view/resources/theme_manager.dart';
-import 'package:attendance/view/screens/splash.dart';
+
+import 'package:Attendance/view/resources/theme_manager.dart';
+import 'package:Attendance/view/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'control/DioHelper.dart';
+import 'control/cubit/cubit.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Attendance',
         theme: getApplicationTheme(),
-        home: const SplashScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

@@ -1,12 +1,11 @@
 import 'dart:io';
-
-import 'package:attendance/control/cubit/cubit.dart';
-import 'package:attendance/control/cubit/states.dart';
-import 'package:attendance/view/resources/color_manager.dart';
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+
+import '../../control/cubit/cubit.dart';
+import '../../control/cubit/states.dart';
+import '../resources/color_manager.dart';
 
 class QRScanner extends StatefulWidget {
   const QRScanner({Key? key}) : super(key: key);

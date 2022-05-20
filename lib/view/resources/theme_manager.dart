@@ -1,5 +1,6 @@
-import 'package:attendance/view/resources/styles_manager.dart';
-import 'package:attendance/view/resources/values_manager.dart';
+
+import 'package:Attendance/view/resources/styles_manager.dart';
+import 'package:Attendance/view/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 
