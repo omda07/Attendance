@@ -39,26 +39,29 @@ AttendanceCubit cubit;
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  '${cubit.userModel!.data![index].name}',
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontWeight: FontWeight.w500,
-                    color: ColorManager.black
-                      ),
-                ),
-                Text(
-                  '${cubit.userModel!.data![index].email}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayLarge!
-                      .copyWith(fontSize: FontSize.s16,                    color: ColorManager.grey
+            Expanded(
+              flex: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    '${cubit.userModel!.data![index].name}',
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          fontWeight: FontWeight.w500,
+                      color: ColorManager.black
+                        ),
                   ),
-                ),
-              ],
+                  Text(
+                    '${cubit.userModel!.data![index].email}',
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayLarge!
+                        .copyWith(fontSize: FontSize.s14,                    color: ColorManager.grey
+                    ),
+                  ),
+                ],
+              ),
             ),
             const Spacer(),
             CircleAvatar(

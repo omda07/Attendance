@@ -51,26 +51,32 @@ class HomeScreen extends StatelessWidget {
                   ))
             ],
           ),
-          body: SafeArea(
-            child: ConditionalBuilder(
-              condition: cubit.userModel !=null,
-              builder: (context) => Column(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: ListView.builder(
-                        itemBuilder: (context, index) => ItemBuilder(index,cubit),
-                        // itemBuilder(context, value.backendUserModel!.users![index]),
+          body: RefreshIndicator(
+            onRefresh: ()async{
+             await cubit.getUsers();
+            },
+            child: SafeArea(
+              child: ConditionalBuilder(
+                condition: cubit.userModel !=null,
+                builder: (context) => Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: ListView.builder(
 
-                        itemCount: cubit.userModel!.data!.length,
+                          itemBuilder: (context, index) => ItemBuilder(index,cubit),
+                          // itemBuilder(context, value.backendUserModel!.users![index]),
+
+                          itemCount: cubit.userModel!.data!.length,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              fallback: (context) => const Center(
-                child: CircularProgressIndicator(),
+                  ],
+                ),
+                fallback: (context) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
               ),
             ),
           ),

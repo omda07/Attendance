@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -47,7 +48,7 @@ class _QRScannerState extends State<QRScanner> {
             children: [
               buildQrView(context),
               Positioned(
-                bottom: 10,
+                bottom: 50,
                 child: Container(
                     padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -61,6 +62,28 @@ class _QRScannerState extends State<QRScanner> {
 
 
                     ),
+              ),
+              Positioned(
+                top: 30,
+                child: Container(
+                  margin: const EdgeInsets.all(8),
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        await controller?.flipCamera();
+                        setState(() {});
+                      },
+                      child: FutureBuilder(
+                        future: controller?.getCameraInfo(),
+                        builder: (context, snapshot) {
+                          if (snapshot.data != null) {
+                            return Text(
+                                'Camera facing ${describeEnum(snapshot.data!)}');
+                          } else {
+                            return const Text('loading');
+                          }
+                        },
+                      )),
+                ),
               ),
             ],
           );
